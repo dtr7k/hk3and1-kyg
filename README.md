@@ -134,6 +134,32 @@ addEventListener(
 ```
 </details>
 
+<details>
+<summary>CloudFlare Pages单双日轮换反代代码</summary>
 
+```js
+export default {
+    async fetch(request, env) {
+      const SingleDay = 'app0.example.com'
+      const DoubleDay = 'app1.example.com'
+      let host = ''
+      let nd = new Date();
+      if (nd.getDate()%2) {
+          host = SingleDay
+      } else {
+          host = DoubleDay
+      }
+      let url = new URL(request.url);
+      if (url.pathname.startsWith('/')) {
+        url.hostname=host;
+        let new_request=new Request(url,request);
+        return fetch(new_request);
+      }
+      // Otherwise, serve the static assets.
+      return env.ASSETS.fetch(request);
+    }
+  };
+```
+</details>
 参考项目
 [heshan2/heroku-xray-server](https://github.com/heshan2/heroku-xray-server)
