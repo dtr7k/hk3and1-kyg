@@ -1,4 +1,5 @@
 有很多反馈说heroku被秒封！建议先用其他的heroku项目或先避开当前的敏感期
+https://dashboard.heroku.com/new?template=
 
 ### 请勿fork，请勿fork，请勿fork，点个Star就好了
 
